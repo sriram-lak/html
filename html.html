@@ -1,17 +1,56 @@
+<!DOCTYPE html>
 <html>
     <head>
-        <title>Basic 5</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Table Creation</title>
+        <style>
+            table,tr,td{
+                border : 1px solid black;
+            }
+        </style>
     </head>
     <body>
-		<img src="bg.png" alt="Company Logo" width="200" height="200">
-		<video width="400" controls>
-			<source src="sriram.mp4" type="video/mp4">
-			<track src="subtitles.vtt" kind="subtitles" srclang="en" label="English">
-		</video>
-		<audio controls>
-			<source src="sound.mp3" type="audio/mpeg">
-			<source src="sound.ogg" type="audio/ogg">
-			Your browser does not support the audio element.
-		</audio>
+        <table style="width:100% ;">
+            <tr>
+                <td rowspan="3">Row3</td>
+                <td colspan="4">Col4</td>
+            </tr>
+            <tr>
+                <td colspan="2">Col2</td>
+                <td colspan="2" rowspan="2">Row2 Col2</td>
+            </tr>
+            <tr>
+                <td colspan="2">Col2</td>
+            </tr>
+            <tr>
+                <td rowspan="2">Row2</td>
+                <td rowspan="2">Row2</td>
+                <td rowspan="2">Row2</td>
+                <td colspan="2">Col2</td>
+            </tr>
+            <tr>
+                <td colspan="2">Col2</td>
+            </tr>
+            <tr>
+                <td rowspan="3">Row3</td>
+                <td colspan="2">Col2</td>
+                <td colspan="2" rowspan="2">One Half</td>
+            </tr>
+            <tr>
+                <td colspan="2">Col2</td>
+                
+            </tr>
+            <tr>
+                <td colspan="2">Col2</td>
+                <td colspan="2" rowspan="1">One Half</td>
+            </tr>
+            <tr>
+                <td>Col1</td>
+                <td>Col1</td>
+                <td>Col1</td>
+                <td colspan="2">Col2</td>
+            </tr>
+        </table>
     </body>
 </html>
