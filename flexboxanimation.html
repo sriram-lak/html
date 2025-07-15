@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Border Animation</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      .container {
+        display: flex;
+        margin: 0 auto;
+        flex-wrap: wrap;
+        width: 80%;
+        height: 100vh;
+        justify-content: center;
+        background-color: black;
+        z-index: -2;
+      }
+      .container div {
+        position: relative;
+        /* display: flex; */
+        width: 20%;
+        margin: 10px;
+        border: 2px solid gray;
+        color: white;
+        text-align: center;
+        align-content: center;
+        border-radius: 50px;
+        background-color: orange;
+        z-index: 1;
+      }
+      .container div::before {
+        content: "";
+        position: absolute;
+        background-color: red;
+        inset: -2px;
+        z-index: -1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div>A</div>
+      <div>B</div>
+      <div>C</div>
+      <div>D</div>
+      <div>E</div>
+      <div>F</div>
+      <div>G</div>
+      <div>H</div>
+      <div>I</div>
+      <div>J</div>
+      <div>K</div>
+      <div>L</div>
+      <div>M</div>
+      <div>N</div>
+      <div>O</div>
+      <div>P</div>
+      <div>Q</div>
+      <div>R</div>
+      <div>S</div>
+      <div>T</div>
+      <div>U</div>
+      <div>V</div>
+      <div>W</div>
+      <div>X</div>
+      <div>Y</div>
+      <div>Z</div>
+    </div>
+  </body>
+</html>
