@@ -72,3 +72,122 @@
     </div>
   </body>
 </html>
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gradient Border Glow Animation with Effects</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #111;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        font-family: Arial, sans-serif;
+      }
+
+      .flex-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+      }
+
+      .cell {
+        width: 120px;
+        height: 120px;
+        background-color: #222;
+        color: #fff;
+        font-size: 24px;
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 12px;
+        position: relative;
+        z-index: 0;
+        overflow: hidden;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+
+      /* Hover Effect */
+      .cell:hover {
+        transform: scale(1.1);
+      }
+
+      /* Click (Active) Effect */
+      .cell:active {
+        transform: scale(0.95);
+      }
+
+      .cell::before {
+        content: "";
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        background: linear-gradient(
+          45deg,
+          red,
+          orange,
+          yellow,
+          green,
+          cyan,
+          blue,
+          violet,
+          red
+        );
+        z-index: -1;
+        border-radius: inherit;
+        animation: border-rotate 4s linear infinite;
+        background-size: 400% 400%;
+        filter: blur(5px);
+      }
+
+      .cell::after {
+        content: "";
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        right: 2px;
+        bottom: 2px;
+        background: #222;
+        border-radius: inherit;
+        z-index: -1;
+      }
+
+      @keyframes border-rotate {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="flex-container">
+      <div class="cell">A</div>
+      <div class="cell">B</div>
+      <div class="cell">C</div>
+      <div class="cell">D</div>
+      <div class="cell">E</div>
+    </div>
+  </body>
+</html>
