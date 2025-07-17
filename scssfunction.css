@@ -1,0 +1,276 @@
+// 🎨 Variables
+$primary-color: #1e272e;
+$accent-color: #0abde3;
+$text-color: #ffffff;
+$background-color: #f5f6fa;
+$font-family: 'Segoe UI', sans-serif;
+
+// 🎛 Mixins
+@mixin flex-center($direction: row, $gap: 1rem) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: center;
+  align-items: center;
+  gap: $gap;
+}
+
+@mixin modern-nav-link($active-color: $accent-color) {
+  a {
+    color: $text-color;
+    position: relative;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    transition: color 0.3s ease;
+
+    // Hover underline
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background-color: $accent-color;
+      transition: width 0.3s ease;
+    }
+
+    &:hover::after {
+      width: 100%;
+    }
+
+    &:hover {
+      color: $accent-color;
+    }
+
+    // Active effect
+    &.active {
+      color: $active-color;
+
+      &::after {
+        width: 100%;
+        background-color: $active-color;
+      }
+    }
+  }
+}
+//use
+.navbar {
+  background-color: $primary-color;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+
+    @include modern-nav-link;
+  }
+}
+
+
+//sidebar
+@mixin modern-sidebar($bg-color: $primary-color, $active-color: $accent-color) {
+  .sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: $bg-color;
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    box-shadow: $shadow-light;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    transition: transform 0.3s ease;
+
+    // Optional: toggle sidebar visibility with a class
+    &.collapsed {
+      transform: translateX(-100%);
+    }
+
+    .sidebar-logo {
+      font-size: $font-size-lg;
+      font-weight: bold;
+      color: $text-color;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .nav-item {
+      a {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.75rem 1rem;
+        color: $text-color;
+        text-decoration: none;
+        border-radius: 8px;
+        transition: background 0.3s ease, transform 0.3s ease;
+
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.1);
+          transform: translateX(5px);
+        }
+
+        &.active {
+          background-color: $active-color;
+          color: #fff;
+        }
+
+        i {
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
+}
+@include modern-sidebar($primary-color, $accent-color);
+
+
+@mixin spinning-border($size: 250px, $border-color: $accent-color) {
+  position: relative;
+  width: $size;
+  height: $size;
+  padding: 2rem;
+  color: $text-color;
+  border-radius: 12px;
+  z-index: 1;
+  background: $primary-color;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    padding: 3px;
+    background: conic-gradient(from 0deg, $border-color, $primary-color, $border-color);
+    mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    animation: spin 3s linear infinite;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+// 📦 Main Info Box
+.main-bar {
+  @include spinning-border(300px, $accent-color);
+  @include center-flex(column);
+  gap: 1rem;
+  text-align: center;
+
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    font-size: 1rem;
+    color: #ccc;
+  }
+}
+
+
+@mixin sticky($top: 0, $left: auto) {
+  position: sticky;
+  top: $top;
+  left: $left;
+  z-index: 10;
+}
+
+
+
+// 🌐 Layout
+body {
+  font-family: $font-family;
+  margin: 0;
+  background: $background-color;
+}
+
+.page-container {
+  display: flex;
+  min-height: 100vh;
+  margin-top: 4.5rem; // space for sticky navbar
+}
+
+// 📦 Main Content
+.main-content {
+  flex: 1;
+  padding: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+
+  .main-bar {
+    @include spinning-border(250px);
+    @include flex-center(column);
+
+    h2 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      color: #ccc;
+      font-size: 0.9rem;
+    }
+  }
+}
+
+
+@mixin floating-label($color: #333, $accent: #0abde3) {
+  position: relative;
+  margin-bottom: 1.5rem;
+
+  input,
+  textarea {
+    width: 100%;
+    padding: 1rem 0.75rem;
+    font-size: 1rem;
+    border: 1px solid $color;
+    border-radius: 5px;
+    background: transparent;
+    color: $color;
+    outline: none;
+
+    &:focus {
+      border-color: $accent;
+    }
+
+    &:focus + label,
+    &:not(:placeholder-shown) + label {
+      top: -0.6rem;
+      left: 0.6rem;
+      font-size: 0.75rem;
+      color: $accent;
+      background-color: white;
+      padding: 0 0.25rem;
+    }
+  }
+
+  label {
+    position: absolute;
+    top: 1rem;
+    left: 0.75rem;
+    color: $color;
+    background-color: transparent;
+    font-size: 1rem;
+    pointer-events: none;
+    transition: all 0.2s ease-in-out;
+  }
+}
