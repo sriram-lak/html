@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="grid.css" />
+  </head>
+  <body>
+    <header class="header">
+      <h1 class="header__heading">Grid</h1>
+      <menu class="header__menu header__menu__desktop">
+        <ul class="header__menu__ul">
+          <li class="header__menu__ul__li">
+            <a href="" class="header__menu__ul__li__a">Home</a>
+          </li>
+          <li class="header__menu__ul__li">
+            <a href="" class="header__menu__ul__li__a">products</a>
+          </li>
+          <li class="header__menu__ul__li">
+            <a href="" class="header__menu__ul__li__a">contact</a>
+          </li>
+          <li class="header__menu__ul__li">
+            <a href="" class="header__menu__ul__li__a">about</a>
+          </li>
+          <li class="header__menu__ul__li">
+            <a href="" class="header__menu__ul__li__a">orders</a>
+          </li>
+        </ul>
+      </menu>
+    </header>
+ 
+    <section><article></article></section>
+    <menu class="mobile__menu">
+      <ul class="mobile__menu__ul">
+        <li class="mobile__menu__ul__li">
+          <a href="" class="mobile__menu__ul__li__a">Home</a>
+        </li>
+        <li class="mobile__menu__ul__li">
+          <a href="" class="mobile__menu__ul__li__a">products</a>
+        </li>
+        <li class="mobile__menu__ul__li">
+          <a href="" class="mobile__menu__ul__li__a">contact</a>
+        </li>
+        <li class="mobile__menu__ul__li">
+          <a href="" class="mobile__menu__ul__li__a">about</a>
+        </li>
+        <li class="mobile__menu__ul__li">
+          <a href="" class="mobile__menu__ul__li__a">orders</a>
+        </li>
+      </ul>
+    </menu>
+    <main class="main"></main>
+    <footer class="footer"></footer>
+  </body>
+</html>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  height: 100%;
+}
+body {
+  width: 100%;
+  min-height: 100%;
+  position: relative;
+}
+.header {
+  background-color: black;
+  color: white;
+  height: 5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+.header__menu__ul {
+  display: flex;
+}
+.header__menu__ul__li:hover {
+  padding: 1rem;
+  background-color: white;
+  border-radius: 0.5rem;
+  & > a {
+    color: black;
+  }
+}
+.header__menu__ul__li {
+  list-style-type: none;
+  padding: 1rem;
+}
+.header__menu__ul__li__a,
+.mobile__menu__ul__li__a {
+  text-decoration: none;
+  color: white;
+}
+ 
+/* hand burger menu*/
+section {
+  position: absolute;
+  top: 1.3rem;
+  right: 0.5rem;
+  width: 40px;
+  min-height: 40px;
+  background-color: black;
+  display: none;
+}
+article {
+  width: 35px;
+  height: 5px;
+  background-color: white;
+  border-radius: 0.5rem;
+  position: relative;
+  top: 15px;
+}
+ 
+article::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  background-color: white;
+  border-radius: inherit;
+}
+article::after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  background-color: white;
+  border-radius: inherit;
+}
+ 
+article:hover::before {
+  top: 0;
+  transform: rotate(45deg);
+}
+ 
+article:hover::after {
+  top: 0;
+  transform: rotate(-45deg);
+}
+ 
+article:hover {
+  background-color: transparent;
+}
+ 
+article:hover,
+article:hover::before,
+article:hover::after {
+  transition: all 0.3s;
+}
+ 
+/*mobile menu*/
+.mobile__menu {
+  width: 100%;
+  height: 0vh;
+  background-color: black;
+  /* display: none; */
+  opacity: 0;
+  pointer-events: none;
+}
+.mobile__menu__ul {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: space-around;
+}
+.mobile__menu__ul__li {
+  border-bottom: 2px solid white;
+  padding: 0.7rem;
+}
+.mobile__menu__ul__li:hover {
+  background-color: rgba(255, 255, 255, 0.895);
+  & > a {
+    color: black;
+  }
+}
+.mobile__menu__ul__li:first-child {
+  border-top: 2px solid white;
+}
+ 
+@media screen and (max-width: 768px) {
+  section {
+    display: block;
+  }
+  section:hover ~ .mobile__menu {
+    /* display: block; */
+    height: 40vh;
+    opacity: 1;
+    transition: all 0.5s;
+  }
+  .header__menu__desktop {
+    display: none;
+  }
+}
